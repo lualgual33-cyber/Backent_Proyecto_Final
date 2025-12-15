@@ -6,11 +6,11 @@ import {
   deleteTodo
 } from "../controllers/todo.controller.js";
 
-const router = Router();
-
-router.get("/", getTodos);
-router.post("/", createTodo);
-router.put("/:id", updateTodo);
-router.delete("/:id", deleteTodo);
-
-export default router;
+router.get("/", async (req, res) => {
+  try {
+    const tareas = await Tarea.find();
+    res.json(tareas);
+  } catch (error) {
+    res.status(500).json({ message: "Error al obtener tareas" });
+  }
+});
