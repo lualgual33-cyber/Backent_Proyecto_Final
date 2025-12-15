@@ -1,18 +1,14 @@
-import { Router } from "express";
-import {
-  getTodos,
-  createTodo,
-  updateTodo,
-  deleteTodo
-} from "../controllers/todo.controller.js";
+import express from "express";
 
+const router = express.Router();
+
+// GET /api/todos
 router.get("/", async (req, res) => {
   try {
-    const tareas = await Tarea.find();
-    res.json(tareas);
+    res.json([]); // por ahora lista vacía
   } catch (error) {
     res.status(500).json({ message: "Error al obtener tareas" });
   }
 });
 
-export default Router;
+export default router;
